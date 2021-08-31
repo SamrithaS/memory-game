@@ -85,7 +85,7 @@ function Memory(props: memoryProps) {
                                 className={`${item.class} ${index === clickedItem1.ind || index === clickedItem2.ind ? "flip" : ""}`}
                                 onClick={() => handleClick(item, index)}
                             >
-                                <img src={item.img}></img>
+                                <img src={item.img} alt=""></img>
                                 <div className="layer"></div>
                             </li>
                         );
