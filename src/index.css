@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+li{
+  list-style: none;
+  position: relative;
+  width:150px;
+  height:150px;
+  cursor:pointer;
+  border: 1px solid transparent;
+}
+img{
+  width:150px;
+  height:150px;
+  object-fit: cover;
+  position: absolute;
+  left:0;
+  top:0;
+transform:translateZ(-1px);
+transform-style: preserve-3d;
+}
+h2{
+  font-size:24px;
+  color:#416378;
+}
+ul{
+  padding-top: 50px;
+  margin: auto;
+  max-width: max-content;
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  
+}
+
+li.flip .layer{
+  height: 0;
+transition: height 0.6s ease-in;
+}
+.layer{
+  width:150px;
+  height:150px;
+  transition: all 0.6s ease-in;
+  background:linear-gradient(to right, #a5cee6 1%,#659dbd 98%);
+  position: absolute;
+  left:0;
+  top:0;transform-style: preserve-3d;
+  transform:translateZ(1px);
+  
+}
+.vanish{
+  transition: border 1s;
+ border: 1px solid black;
+}
+.vanish .layer{
+  transition: opacity 1s;
+  opacity:0;
+}
+.play-again{
+  font-size: 20px;
+  color:#416378;
+margin-top: 10%;
+}
+.play-again button{
+  padding:18px 35px;
+  color:white;
+  background: linear-gradient(#416378, #72b3db);
+  border:none;
+  border-radius:10px;
+}
+.play-again button:hover{
+  opacity:80%;
+  cursor:pointer;
+}
