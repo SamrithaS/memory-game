@@ -4,81 +4,165 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: white;
+  background-color: #e6f2e9;
+  padding-bottom:20px;
 }
-
+@font-face {
+  font-family: digital-7;
+  src: url(./fonts/digital-7.regular.ttf);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-li{
+li {
   list-style: none;
   position: relative;
-  width:150px;
-  height:150px;
-  cursor:pointer;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
   border: 1px solid transparent;
+  border-radius: 10px;
 }
-img{
-  width:150px;
-  height:150px;
+img {
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   position: absolute;
-  left:0;
-  top:0;
-transform:translateZ(-1px);
-transform-style: preserve-3d;
+  left: 0;
+  top: 0;
+  transform: translateZ(-1px);
+  transform-style: preserve-3d;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #1f2120;
 }
-h2{
-  font-size:24px;
-  color:#416378;
+h2 {
+  font-size: 24px;
+  color: #1f2120;
 }
-ul{
-  padding-top: 50px;
+ul {
+  padding-left: 0;
   margin: auto;
   max-width: max-content;
   display: grid;
   grid-template-columns: 150px 150px 150px 150px;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  
+}
+.UI-parent {
+  width: max-content;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+li.flip .layer {
+  height: 0;
+  transition: height 0.6s ease-in;
+}
+.layer {
+  width: 150px;
+  height: 150px;
+  transition: all 0.6s ease;
+  background: linear-gradient(to right, #3b413f, #758779);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(1px);
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px #1f2120;
 }
 
-li.flip .layer{
-  height: 0;
-transition: height 0.6s ease-in;
-}
-.layer{
-  width:150px;
-  height:150px;
-  transition: all 0.6s ease-in;
-  background:linear-gradient(to right, #a5cee6 1%,#659dbd 98%);
-  position: absolute;
-  left:0;
-  top:0;transform-style: preserve-3d;
-  transform:translateZ(1px);
-  
-}
-.vanish{
-  transition: border 1s;
- border: 1px solid black;
-}
-.vanish .layer{
+.vanish .layer {
   transition: opacity 1s;
-  opacity:0;
+  opacity: 0;
 }
-.play-again{
+.play-again {
   font-size: 20px;
-  color:#416378;
-margin-top: 10%;
+  color: #416378;
+  background: #3b413f;
+  width: max-content;
+  margin: 10% auto;
+  padding: 30px 20px;
+  border-radius: 10px;
 }
-.play-again button{
-  padding:18px 35px;
-  color:white;
-  background: linear-gradient(#416378, #72b3db);
-  border:none;
-  border-radius:10px;
+.play-again button {
+  padding: 18px 35px;
+  background: linear-gradient(to right, #e6f2e9, #758779);
+  border: none;
+  border-radius: 10px;
+  color: #3b413f;
 }
-.play-again button:hover{
-  cursor:pointer;
+.play-again button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+.outer {
+  background-color: #1f2120;
+  border-radius: 10px;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.inner {
+  font-family: digital-7;
+  font-size: 22px;
+  border-radius: 5px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+  width: 70px;
+  height: 30px;
+  background: #3b413f;
+  margin: auto;
+}
+.minute-box {
+  margin-right: 2px;
+  background-color: #1f2120;
+  border-radius: 3px;
+  box-shadow: inset 0px -1px 1px #75746f, inset 0px 1px 1px #75746f;
+  width: 29px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.second-box {
+  margin-left: 2px;
+  background-color: #1f2120;
+  border-radius: 3px;
+  box-shadow: inset 0px -1px 1px #75746f, inset 0px 1px 1px #75746f;
+  width: 29px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-again p {
+  padding-bottom: 20px;
+  color: #e6f2e9;
+  font-size: 16px;
+}
+p {
+  margin: 0;
+  color: #758779;
+}
+.timer-button {
+  width: 5px;
+  height: 20px;
+  background-color: #1f2120;
+  border-radius: 10px;
+  margin-left: -1px;
+}
+.parent-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

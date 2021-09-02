@@ -1,6 +1,5 @@
-import React from "react";
 import "./App.css";
-import Memory from "./memory-game";
+import Memory from "./components/memory-game";
 import balloon from "./images/balloon.jpeg";
 import bike from "./images/bike.jpeg";
 import butterfly from "./images/butterfly.jpeg";
@@ -12,11 +11,26 @@ import tulips from "./images/tulips.jpeg";
 import _ from "lodash";
 
 function App() {
-  var images:string[]= _.shuffle([balloon, bike, butterfly, elephant, eyes, gift, tiger, tulips, balloon, bike, butterfly, elephant, eyes, gift, tiger, tulips])
+  var images: string[] = _.shuffle([
+    balloon,
+    eyes,
+    gift,
+    bike,
+    butterfly,
+    bike,
+    butterfly,
+    elephant,
+    elephant,
+    tiger,
+    tulips,
+    balloon,
+    eyes,
+    gift,
+    tiger,
+    tulips,
+  ]);
 
-  return (
-    <Memory images={images}/>
-  );
+  return <Memory images={images} />;
 }
 
 export default App;
