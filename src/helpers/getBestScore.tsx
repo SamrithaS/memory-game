@@ -3,7 +3,7 @@ let leastSec = 61;
 let leastMinuteArray = [];
 let bestScore = "00:00";
 
-export function getBestScore(array: string) {
+export function getBestScore(array: any) {
   if (array) {
     array.split(" ").map((item: string) => {
       if (Number(item.slice(0, 2)) < leastMin) {
