@@ -1,5 +1,5 @@
 import "./App.css";
-import Memory from "./components/memory-game";
+import Memory from "./components/uiComponent";
 import balloon from "./images/balloon.jpeg";
 import bike from "./images/bike.jpeg";
 import butterfly from "./images/butterfly.jpeg";
