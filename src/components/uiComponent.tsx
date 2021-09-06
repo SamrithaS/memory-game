@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { Iobj, Iarray, memoryProps, itemType } from "../types/types";
 import { getTimerMinutes, getTimerSeconds } from "../helpers/getTimerValues";
+import { setToLocalStorage } from "../helpers/setToLocalStorage";
 import MemoryGame from "./memorygameComponent";
-let counter: number = 0;
+
 function Memory(props: memoryProps) {
   var arrays: Iarray = props.images.map((i: string, index: number) => {
     return { img: i, id: index };
@@ -11,26 +12,28 @@ function Memory(props: memoryProps) {
   const [minute, setMinute] = useState<string>("");
   const [seconds, setSeconds] = useState<string>("");
   const [imageArray, setImageArray] = useState<Iarray>(arrays);
+  const [counterValue, setCounterValue] = useState<number>(0);
   const [clickedItem2, setClickedItem2] = useState<Iobj>({
     img: "",
     ind: null,
     class: "",
   });
+  const [tabFocus, setTabFocus] = useState<boolean>(true);
   const [clickedItem1, setClickedItem1] = useState<Iobj>({
     img: "",
     ind: null,
     class: "",
   });
-  const [timerActive, setTimerActive] = useState<boolean>(true);
+  const [timerActive, setTimerActive] = useState<boolean>(false);
 
   useEffect(() => {
     setSeconds("00");
     setMinute("00");
     window.addEventListener("blur", () => {
-      setTimerActive(false);
+      setTabFocus(false);
     });
     window.addEventListener("focus", () => {
-      setTimerActive(true);
+      setTabFocus(true);
     });
   }, []);
 
@@ -52,24 +55,18 @@ function Memory(props: memoryProps) {
       _.filter(imageArray, (item) => {
         return item.class !== "vanish";
       }).length !== 0 &&
-      timerActive
+      timerActive &&
+      tabFocus
     ) {
       setTimeout(() => {
-        setSeconds(getTimerSeconds(counter));
-        setMinute(getTimerMinutes(counter));
-        counter = counter + 1;
+        setSeconds(getTimerSeconds(counterValue));
+        setMinute(getTimerMinutes(counterValue));
+        setCounterValue(counterValue + 1);
       }, 1000);
     } else if (timerActive) {
-      let dataval = localStorage.getItem("data");
-      let value =
-        minute && seconds !== "00"
-          ? dataval
-            ? dataval + ` ${minute}:${seconds}`
-            : `${minute}:${seconds}`
-          : "";
-      localStorage.setItem("data", value);
+      setToLocalStorage(minute, seconds);
     }
-  }, [seconds, minute, timerActive]);
+  }, [seconds, minute, timerActive, counterValue, tabFocus]);
 
   const handleClick = (item: itemType, index: number) => {
     if (timerActive) {
@@ -80,7 +77,6 @@ function Memory(props: memoryProps) {
           ind: index,
         });
       }
-
       if (
         clickedItem1.ind !== null &&
         clickedItem2.ind === null &&
@@ -129,6 +125,20 @@ function Memory(props: memoryProps) {
           Memory game
         </h2>
       </div>
+      {!timerActive ? (
+        <div className="absolute z-50 max-w-sm px-6 py-8 m-auto ml-12 bg-white rounded-lg shadow-lg md:px-20 md:py-10 md:mt-20 md:ml-28 left-1/3 md:top-1/4 top-1/3">
+          <button
+            className="px-3 py-3 rounded-md hover:shadow-md"
+            onClick={() => {
+              setTimerActive(true);
+            }}
+          >
+            {counterValue === 0 ? "Start game" : "Resume game"}
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
       {_.filter(imageArray, (item) => {
         return item.class !== "vanish";
       }).length === 0 ? (
@@ -141,7 +151,7 @@ function Memory(props: memoryProps) {
             onClick={() => {
               window.location.reload();
             }}
-            className="py-3 pb-5 my-5 rounded-lg shadow-lg cursor-pointer px-7 text-lightGray font-sm"
+            className="py-3 pb-5 my-5 rounded-lg shadow-lg cursor-pointer px-7 text-lightGray font-sm hover:shadow-md"
           >
             play again!
           </button>
@@ -157,7 +167,7 @@ function Memory(props: memoryProps) {
             imageArray={imageArray}
             timerActive={timerActive}
           />
-          <div className="flex items-center justify-between max-w-lg mx-auto mt-8">
+          <div className="flex items-center justify-between max-w-sm mx-1 mx-auto mt-8 md:max-w-lg">
             <button
               className="px-3 py-2 rounded-md text-darkGray"
               onClick={() => {
@@ -169,10 +179,10 @@ function Memory(props: memoryProps) {
             <button
               className="px-3 py-2 rounded-md text-darkGray hover:shadow-md"
               onClick={() => {
-                setTimerActive(!timerActive);
+                setTimerActive(false);
               }}
             >
-              {timerActive ? "pause" : "play"}
+              Pause
             </button>
           </div>
         </div>
