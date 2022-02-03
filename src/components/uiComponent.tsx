@@ -125,20 +125,7 @@ function Memory(props: memoryProps) {
           Memory game
         </h2>
       </div>
-      {!timerActive ? (
-        <div className="absolute z-50 max-w-sm px-6 py-8 m-auto ml-12 bg-white rounded-lg shadow-lg md:px-20 md:py-10 md:mt-20 md:ml-28 left-1/3 md:top-1/4 top-1/3">
-          <button
-            className="px-3 py-3 rounded-md hover:shadow-md"
-            onClick={() => {
-              setTimerActive(true);
-            }}
-          >
-            {counterValue === 0 ? "Start game" : "Resume game"}
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
+      
       {_.filter(imageArray, (item) => {
         return item.class !== "vanish";
       }).length === 0 ? (
@@ -157,7 +144,21 @@ function Memory(props: memoryProps) {
           </button>
         </div>
       ) : (
-        <div>
+        <div className="relative mx-auto wrap">
+          {!timerActive ? (
+        <div className="absolute z-50 start">
+          <p
+            className="px-3 py-3 bg-white rounded-md cursor-pointer hover:shadow-md"
+            onClick={() => {
+              setTimerActive(true);
+            }}
+          >
+            {counterValue === 0 ? "Start game" : "Resume game"}
+          </p>
+        </div>
+      ) : (
+        <></>
+      )}
           <MemoryGame
             clickedItem1={clickedItem1}
             clickedItem2={clickedItem2}

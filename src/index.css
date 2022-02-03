@@ -33,6 +33,13 @@ li.flip .layer {
 button {
   background: linear-gradient(to right, #e6f2e9, #758779);
 }
+.wrap {
+  max-width: 60vw;
+}
+.start {
+  top: 40vh;
+  left: 25vw;
+}
 .outer {
   width: 80px;
   height: 40px;

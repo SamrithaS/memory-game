@@ -32,7 +32,7 @@ function memoryGame(props: {
           return (
             <li
               key={index}
-              className={`list-none relative pointer rounded-md border border-transparent md:w-32 md:h-32 w-16 h-16 ${
+              className={`list-none relative pointer rounded-md border border-transparent cursor-pointer md:w-32 md:h-32 w-16 h-16 ${
                 item.class
               } ${
                 index === props.clickedItem1.ind ||
